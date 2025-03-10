@@ -256,17 +256,17 @@ export default function Home({ params }) {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-6 web-corner relative">
+              <div className="bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-6 web-corner relative">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block magical-subtitle text-l  text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block magical-subtitle text-l text-gray-300 mb-2">
                       Nach der Party gibt es eine Pyjama-Party für alle, die
                       übernachten möchten! Bitte gib bei der Anmeldung an, ob du
                       nur zur Hauptparty oder auch zur Pyjama-Party bleibst.
                     </label>
                     <label
                       htmlFor="nama"
-                      className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2"
+                      className="block magical-subtitle text-gray-300 mb-2"
                     >
                       Dein Name
                     </label>
@@ -277,12 +277,12 @@ export default function Home({ params }) {
                       value={formData.nama}
                       onChange={handleChange}
                       required
-                      className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-400"
+                      className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-600bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-400"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block magical-subtitle text-gray-300 mb-2">
                       Werden Sie teilnehmen:
                     </label>
                     <div className="space-y-2">
@@ -298,7 +298,7 @@ export default function Home({ params }) {
                         />
                         <label
                           htmlFor="mainParty"
-                          className="fancy-text text-gray-700 dark:text-gray-300"
+                          className="fancy-text text-gray-300"
                         >
                           Nur Hauptparty
                         </label>
@@ -315,7 +315,7 @@ export default function Home({ params }) {
                         />
                         <label
                           htmlFor="bothParties"
-                          className="fancy-text text-gray-700 dark:text-gray-300"
+                          className="fancy-text text-gray-300"
                         >
                           Hauptparty + Pyjama-Party
                         </label>
@@ -326,7 +326,7 @@ export default function Home({ params }) {
                   <div>
                     <label
                       htmlFor="pesan"
-                      className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2"
+                      className="block magical-subtitle text-gray-300 mb-2"
                     >
                       Spook Message
                     </label>
@@ -336,7 +336,7 @@ export default function Home({ params }) {
                       value={formData.pesan}
                       onChange={handleChange}
                       rows="4"
-                      className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-400"
+                      className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
                     ></textarea>
                   </div>
 
@@ -344,15 +344,15 @@ export default function Home({ params }) {
                     type="submit"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-full font-spooky bg-pink-500 dark:bg-purple-500 hover:bg-pink-600 dark:hover:bg-purple-600 text-white text-xl py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg spooky-hover"
+                    className="w-full font-spooky bg-purple-500   text-white text-xl py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg spooky-hover"
                   >
                     Send RSVP
                   </motion.button>
                 </form>
               </div>
 
-              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-6 web-corner relative">
-                <h3 className="magical-subtitle text-2xl text-gray-800 dark:text-white mb-4">
+              <div className="bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-6 web-corner relative">
+                <h3 className="magical-subtitle text-2xl text-white mb-4">
                   Party Location 🗺️
                 </h3>
                 <div className="w-full h-[400px] rounded-lg overflow-hidden">
@@ -367,14 +367,14 @@ export default function Home({ params }) {
                     className="rounded-lg"
                   />
                 </div>
-                <div className="mt-4 fancy-text text-gray-600 dark:text-gray-300">
+                <div className="mt-4 fancy-text text-gray-300">
                   <p>Zurlaubener Ufer 63</p>
                   <p>54292 Trier, Germany</p>
                   <a
                     href="https://maps.google.com/?q=Zurlaubener+Ufer+63,+54292+Trier,+Germany"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-2 text-pink-500 dark:text-purple-400 hover:text-pink-600 dark:hover:text-purple-300"
+                    className="inline-block mt-2 text-purple-400 hover:text-pink-600 "
                   >
                     Open in Google Maps 🗺️
                   </a>
@@ -407,8 +407,8 @@ export default function Home({ params }) {
                   backgroundImage={`url('${image.src}')`}
                 >
                   {/* Placeholder untuk gambar */}
-                  <div className="absolute inset-0 bg-pink-200 dark:bg-purple-900 flex items-center justify-center">
-                    <span className="fancy-text text-gray-600 dark:text-gray-300">
+                  <div className="absolute inset-0 bg-purple-900 flex items-center justify-center">
+                    <span className="fancy-text text-gray-300">
                       Photo {image.id} 📸
                     </span>
                   </div>
@@ -417,7 +417,7 @@ export default function Home({ params }) {
             </div>
 
             <div className="text-center mt-8">
-              <p className="magical-subtitle text-gray-600 dark:text-gray-300">
+              <p className="magical-subtitle text-gray-300">
                 Gallery will be updated with spook party photos! 👻
               </p>
             </div>
