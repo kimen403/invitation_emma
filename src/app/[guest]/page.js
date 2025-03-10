@@ -221,21 +221,19 @@ export default function Home({ params }) {
                   <h3 className="font-spooky text-lg text-pink-500 dark:text-purple-400 mb-2">
                     📅 Wenn?
                   </h3>
-                  <p className="fancy-text text-gray-600 dark:text-gray-300">
+                  <p className="fancy-text text-gray-300">
                     Freitag, 21. März 2025
                   </p>
-                  <p className="fancy-text text-gray-600 dark:text-gray-300">
-                    16:00 Uhr
-                  </p>
+                  <p className="fancy-text text-gray-300">16:00 Uhr</p>
                 </div>
                 <div className="text-center spooky-hover">
                   <h3 className="font-spooky text-lg text-pink-500 dark:text-purple-400 mb-2">
                     📍 Wo?
                   </h3>
-                  <p className="fancy-text text-gray-600 dark:text-gray-300">
+                  <p className="fancy-text text-gray-300">
                     Zurlaubener Ufer 63
                   </p>
-                  <p className="fancy-text text-gray-600 dark:text-gray-300">
+                  <p className="fancy-text text-gray-300">
                     54292 Trier, Germany
                   </p>
                 </div>
