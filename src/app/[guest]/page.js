@@ -46,9 +46,9 @@ export default function Home({ params }) {
 
   // Data galeri
   const images = [
-    { id: 1, src: "/images/gallery1.jpg", alt: "Gallery Image 1" },
-    { id: 2, src: "/images/gallery2.jpg", alt: "Gallery Image 2" },
-    { id: 3, src: "/images/gallery3.jpg", alt: "Gallery Image 3" },
+    { id: 1, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 1" },
+    { id: 2, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 2" },
+    { id: 3, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 3" },
   ];
 
   const { scrollY } = useScroll();
@@ -98,7 +98,7 @@ export default function Home({ params }) {
           width: "100%",
           height: "100%",
           backgroundImage: "url('/pichture/bg-mobile.png')",
-          backgroundSize: "cover",
+          backgroundSize: "stretch",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           opacity: 0.2,
@@ -164,7 +164,7 @@ export default function Home({ params }) {
               </p>
             </motion.div>
 
-            <div className="max-w-3xl mx-auto bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-8 mb-12 web-corner relative">
+            <div className="max-w-3xl mx-auto bg-gray-800/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-8 mb-12 web-corner relative">
               {/* Background Images */}
               <div
                 className="hidden md:block"
@@ -406,6 +406,7 @@ export default function Home({ params }) {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}
                   className="relative aspect-square overflow-hidden rounded-lg shadow-lg spooky-hover web-corner"
+                  backgroundImage={`url('${image.src}')`}
                 >
                   {/* Placeholder untuk gambar */}
                   <div className="absolute inset-0 bg-pink-200 dark:bg-purple-900 flex items-center justify-center">

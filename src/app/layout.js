@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <title>Invitation Emma Kanaya</title>
         <meta
           name="description"
-          content="Spooky Tacular Party - Emma-Kanaya's 5th Birthday"
+          content="Spook Tacular Party - Emma-Kanaya's 5th Birthday"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
