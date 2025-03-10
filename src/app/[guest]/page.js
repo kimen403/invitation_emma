@@ -3,7 +3,7 @@ import { useState, use, useEffect } from "react";
 import Modal from "@/app/components/Modal";
 import CountdownTimer from "@/app/components/CountdownTimer";
 import MusicPlayer from "@/app/components/MusicPlayer";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { useTheme } from "next-themes";
 
 export default function Home({ params }) {
@@ -51,6 +51,16 @@ export default function Home({ params }) {
     { id: 3, src: "/images/gallery3.jpg", alt: "Gallery Image 3" },
   ];
 
+  const { scrollY } = useScroll();
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    return scrollY.onChange((latest) => {
+      const newOpacity = Math.max(1 - latest / 200, 0); // Fade out within 200px scroll
+      setOpacity(newOpacity);
+    });
+  }, [scrollY]);
+
   const bgGradient =
     theme === "dark"
       ? "bg-gradient-to-b from-purple-900 via-gray-900 to-black"
@@ -58,12 +68,48 @@ export default function Home({ params }) {
 
   return (
     <main
-      className={`min-h-screen ${bgGradient} transition-colors duration-500`}
+      className={`min-h-screen ${bgGradient} transition-colors duration-500 relative`}
     >
-      {/* Decorative Images */}
+      {/* Desktop Background */}
       <div
+        className="hidden md:block"
         style={{
           position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url('/pichture/bg-vampirina.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.2,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Mobile Background */}
+      <div
+        className="block md:hidden"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url('/pichture/bg-mobile.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.2,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Decorative Images */}
+      <motion.div
+        style={{
+          position: "absolute",
           top: "0px",
           right: "0px",
           width: "250px",
@@ -72,11 +118,12 @@ export default function Home({ params }) {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           zIndex: 5,
+          opacity,
         }}
       />
-      <div
+      <motion.div
         style={{
-          position: "fixed",
+          position: "absolute",
           top: "0px",
           left: "0px",
           width: "250px",
@@ -85,6 +132,7 @@ export default function Home({ params }) {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           zIndex: 5,
+          opacity,
         }}
       />
       <Modal onOpen={handleModalOpen} guest={guest} />
