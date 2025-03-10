@@ -56,9 +56,9 @@ export default function Home({ params }) {
 
   // Data galeri
   const images = [
-    { id: 1, src: "/pichture/photo/foto1.png", alt: "Gallery Image 1" },
-    { id: 2, src: "/pichture/photo/foto1.png", alt: "Gallery Image 2" },
-    { id: 3, src: "/pichture/photo/foto1.png", alt: "Gallery Image 3" },
+    { id: 1, src: "/pichture/photo/foto2.jpeg", alt: "Gallery Image 1" },
+    { id: 2, src: "/pichture/photo/foto1.jpeg", alt: "Gallery Image 2" },
+    { id: 3, src: "/pichture/photo/foto3.jpeg", alt: "Gallery Image 3" },
   ];
 
   const [opacity, setOpacity] = useState(1);
