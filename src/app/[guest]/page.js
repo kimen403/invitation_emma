@@ -60,6 +60,33 @@ export default function Home({ params }) {
     <main
       className={`min-h-screen ${bgGradient} transition-colors duration-500`}
     >
+      {/* Decorative Images */}
+      <div
+        style={{
+          position: "fixed",
+          top: "0px",
+          right: "0px",
+          width: "250px",
+          height: "250px",
+          backgroundImage: "url('/pichture/labakanan.png')",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          zIndex: 5,
+        }}
+      />
+      <div
+        style={{
+          position: "fixed",
+          top: "0px",
+          left: "0px",
+          width: "250px",
+          height: "250px",
+          backgroundImage: "url('/pichture/labakiri.png')",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          zIndex: 5,
+        }}
+      />
       <Modal onOpen={handleModalOpen} guest={guest} />
       <MusicPlayer />
 
@@ -73,12 +100,12 @@ export default function Home({ params }) {
             className="text-center mb-16"
           >
             <motion.div
-              className="mb-8"
+              className="mb-8 relative z-20"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", bounce: 0.5 }}
             >
-              <h1 className="font-spooky text-5xl text-red-600 md:text-7xl mb-4">
+              <h1 className="font-spooky text-5xl text-red-600 md:text-7xl mb-4 relative z-50">
                 Spook-Tacular Party!
               </h1>
               <p className="font-spooky text-3xl text-yellow-200 md:text-4xl mb-2">
@@ -90,10 +117,58 @@ export default function Home({ params }) {
             </motion.div>
 
             <div className="max-w-3xl mx-auto bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-8 mb-12 web-corner relative">
-              <h2 className="font-body text-2xl text-yellow-200 mb-6">
+              {/* Background Images */}
+              <div
+                className="hidden md:block"
+                style={{
+                  position: "absolute",
+                  top: "60%",
+                  left: "0px",
+                  width: "150px",
+                  height: "150px",
+                  transform: "translateY(-50%)",
+                  backgroundImage: "url('/pichture/pohon.png')",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  zIndex: 0,
+                }}
+              />
+              <div
+                className="hidden md:block"
+                style={{
+                  position: "absolute",
+                  top: "60%",
+                  right: "0px",
+                  width: "150px",
+                  height: "150px",
+                  transform: "translateY(-50%)",
+                  backgroundImage: "url('/pichture/pohon.png')",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  zIndex: 0,
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 30,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  backgroundImage: "url('/pichture/rumah.png')",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  opacity: 0.5,
+                  zIndex: 0,
+                }}
+              />
+              <h2 className="font-body text-2xl text-yellow-200 mb-6 relative z-10">
                 Event Details
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                 <div className="text-center spooky-hover">
                   <h3 className="font-spooky text-lg text-pink-500 dark:text-purple-400 mb-2">
                     📅 Wenn?

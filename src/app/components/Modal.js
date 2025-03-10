@@ -33,6 +33,21 @@ const Modal = ({ onOpen, guest }) => {
             exit={{ scale: 0.5, opacity: 0 }}
             className="themed-container rounded-2xl shadow-xl backdrop-blur-sm relative overflow-hidden max-w-md mx-4 p-8"
           >
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundImage: "url('/pichture/vapirina1.png')",
+                backgroundSize: "80%",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                opacity: 0.5,
+                zIndex: 0,
+              }}
+            />
             <motion.div
               className="relative z-10 text-center"
               initial={{ opacity: 0, y: 20 }}
