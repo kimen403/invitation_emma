@@ -1,5 +1,6 @@
 "use client";
 import { useState, use, useEffect } from "react";
+import Image from "next/image";
 import Modal from "@/app/components/Modal";
 import CountdownTimer from "@/app/components/CountdownTimer";
 import MusicPlayer from "@/app/components/MusicPlayer";
@@ -55,9 +56,9 @@ export default function Home({ params }) {
 
   // Data galeri
   const images = [
-    { id: 1, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 1" },
-    { id: 2, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 2" },
-    { id: 3, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 3" },
+    { id: 1, src: "/pichture/photo/foto1.png", alt: "Gallery Image 1" },
+    { id: 2, src: "/pichture/photo/foto1.png", alt: "Gallery Image 2" },
+    { id: 3, src: "/pichture/photo/foto1.png", alt: "Gallery Image 3" },
   ];
 
   const [opacity, setOpacity] = useState(1);
@@ -220,7 +221,7 @@ export default function Home({ params }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                 <div className="text-center spooky-hover">
                   <h3 className="font-spooky text-lg text-pink-500 dark:text-purple-400 mb-2">
-                    📅 Wenn?
+                    📅 Wann?
                   </h3>
                   <p className="fancy-text text-gray-300">
                     Freitag, 21. März 2025
@@ -395,7 +396,7 @@ export default function Home({ params }) {
             id="gallery"
           >
             <h2 className="font-spooky text-3xl text-yellow-200 text-center mb-8">
-              📸 Spooky Gallery 📸
+              📸 Spook Gallery 📸
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -408,12 +409,14 @@ export default function Home({ params }) {
                   transition={{ duration: 0.5 }}
                   className="relative aspect-square overflow-hidden rounded-lg shadow-lg spooky-hover web-corner"
                 >
-                  {/* Placeholder untuk gambar */}
-                  <div className="absolute inset-0 bg-purple-900 flex items-center justify-center">
-                    <span className="fancy-text text-gray-300">
-                      Photo {image.id} 📸
-                    </span>
-                  </div>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover"
+                    priority={image.id === 1}
+                  />
                 </motion.div>
               ))}
             </div>
