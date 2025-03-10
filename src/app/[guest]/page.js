@@ -12,8 +12,8 @@ export default function Home({ params }) {
   const resolvedParams = use(params);
   const [formData, setFormData] = useState({
     nama: "",
-    jumlahTamu: 1,
     pesan: "",
+    attendance: "", // Add new field
   });
 
   const { guest } = resolvedParams;
@@ -33,7 +33,7 @@ export default function Home({ params }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Terima kasih atas konfirmasi kehadiran Anda!");
-    setFormData({ nama: "", jumlahTamu: 1, pesan: "" });
+    setFormData({ nama: "", pesan: "", attendance: "" });
   };
 
   const handleChange = (e) => {
@@ -79,7 +79,7 @@ export default function Home({ params }) {
               transition={{ type: "spring", bounce: 0.5 }}
             >
               <h1 className="font-spooky text-5xl text-red-600 md:text-7xl mb-4">
-                Spooky Tacular Party!
+                Spook-Tacular Party!
               </h1>
               <p className="font-spooky text-3xl text-yellow-200 md:text-4xl mb-2">
                 Emma-Kanaya
@@ -96,18 +96,18 @@ export default function Home({ params }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="text-center spooky-hover">
                   <h3 className="font-spooky text-lg text-pink-500 dark:text-purple-400 mb-2">
-                    📅 When?
+                    📅 Wenn?
                   </h3>
                   <p className="fancy-text text-gray-600 dark:text-gray-300">
-                    Friday, March 21st, 2025
+                    Freitag, 21. März 2025
                   </p>
                   <p className="fancy-text text-gray-600 dark:text-gray-300">
-                    4:00 PM
+                    16:00 Uhr
                   </p>
                 </div>
                 <div className="text-center spooky-hover">
                   <h3 className="font-spooky text-lg text-pink-500 dark:text-purple-400 mb-2">
-                    📍 Where?
+                    📍 Wo?
                   </h3>
                   <p className="fancy-text text-gray-600 dark:text-gray-300">
                     Zurlaubener Ufer 63
@@ -130,7 +130,7 @@ export default function Home({ params }) {
             className="max-w-4xl mx-auto mb-16"
             id="rsvp"
           >
-            <h2 className="font-spooky text-3xl text-yellow-200 mb-8 text-center">
+            <h2 className="font-spooky text-4xl text-yellow-200 mb-8 text-center">
               🎈 Join The Party! 🎈
             </h2>
 
@@ -138,11 +138,16 @@ export default function Home({ params }) {
               <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl p-6 web-corner relative">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
+                    <label className="block magical-subtitle text-l  text-gray-700 dark:text-gray-300 mb-2">
+                      Nach der Party gibt es eine Pyjama-Party für alle, die
+                      übernachten möchten! Bitte gib bei der Anmeldung an, ob du
+                      nur zur Hauptparty oder auch zur Pyjama-Party bleibst.
+                    </label>
                     <label
                       htmlFor="nama"
                       className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      Your Name
+                      Dein Name
                     </label>
                     <input
                       type="text"
@@ -155,23 +160,46 @@ export default function Home({ params }) {
                     />
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="jumlahTamu"
-                      className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2"
-                    >
-                      Number of Guests
+                  <div className="space-y-2">
+                    <label className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2">
+                      Werden Sie teilnehmen:
                     </label>
-                    <input
-                      type="number"
-                      id="jumlahTamu"
-                      name="jumlahTamu"
-                      value={formData.jumlahTamu}
-                      onChange={handleChange}
-                      min="1"
-                      required
-                      className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-400"
-                    />
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="mainParty"
+                          name="attendance"
+                          value="mainParty"
+                          checked={formData.attendance === "mainParty"}
+                          onChange={handleChange}
+                          className="mr-2"
+                        />
+                        <label
+                          htmlFor="mainParty"
+                          className="fancy-text text-gray-700 dark:text-gray-300"
+                        >
+                          Nur Hauptparty
+                        </label>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="bothParties"
+                          name="attendance"
+                          value="bothParties"
+                          checked={formData.attendance === "bothParties"}
+                          onChange={handleChange}
+                          className="mr-2"
+                        />
+                        <label
+                          htmlFor="bothParties"
+                          className="fancy-text text-gray-700 dark:text-gray-300"
+                        >
+                          Hauptparty + Pyjama-Party
+                        </label>
+                      </div>
+                    </div>
                   </div>
 
                   <div>
@@ -179,7 +207,7 @@ export default function Home({ params }) {
                       htmlFor="pesan"
                       className="block magical-subtitle text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      Spooky Message
+                      Spook Message
                     </label>
                     <textarea
                       id="pesan"
@@ -268,7 +296,7 @@ export default function Home({ params }) {
 
             <div className="text-center mt-8">
               <p className="magical-subtitle text-gray-600 dark:text-gray-300">
-                Gallery will be updated with spooky party photos! 👻
+                Gallery will be updated with spook party photos! 👻
               </p>
             </div>
           </motion.section>
