@@ -1,7 +1,7 @@
-'use client';
-import { Howl } from 'howler';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+"use client";
+import { Howl } from "howler";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 let backgroundMusic = null;
 let musicState = { isPlaying: false };
@@ -9,34 +9,40 @@ let musicState = { isPlaying: false };
 export const playBackgroundMusic = () => {
   if (!backgroundMusic) {
     backgroundMusic = new Howl({
-      src: ['/music/background-music.mp3'],
+      src: ["/music/background-music.mp3"],
       loop: true,
       volume: 0.5,
       html5: true,
       onload: () => {
-        console.log('Musik berhasil dimuat');
         backgroundMusic.play();
         musicState.isPlaying = true;
-        window.dispatchEvent(new CustomEvent('musicStateChange', { detail: true }));
+        window.dispatchEvent(
+          new CustomEvent("musicStateChange", { detail: true })
+        );
       },
       onplay: () => {
-        console.log('Musik mulai diputar');
         musicState.isPlaying = true;
-        window.dispatchEvent(new CustomEvent('musicStateChange', { detail: true }));
+        window.dispatchEvent(
+          new CustomEvent("musicStateChange", { detail: true })
+        );
       },
       onpause: () => {
         musicState.isPlaying = false;
-        window.dispatchEvent(new CustomEvent('musicStateChange', { detail: false }));
+        window.dispatchEvent(
+          new CustomEvent("musicStateChange", { detail: false })
+        );
       },
       onstop: () => {
         musicState.isPlaying = false;
-        window.dispatchEvent(new CustomEvent('musicStateChange', { detail: false }));
-      }
+        window.dispatchEvent(
+          new CustomEvent("musicStateChange", { detail: false })
+        );
+      },
     });
   } else {
     backgroundMusic.play();
     musicState.isPlaying = true;
-    window.dispatchEvent(new CustomEvent('musicStateChange', { detail: true }));
+    window.dispatchEvent(new CustomEvent("musicStateChange", { detail: true }));
   }
 };
 
@@ -49,14 +55,14 @@ const MusicPlayer = () => {
       setIsPlaying(e.detail);
     };
 
-    window.addEventListener('musicStateChange', handleMusicStateChange);
-    
+    window.addEventListener("musicStateChange", handleMusicStateChange);
+
     if (backgroundMusic) {
       setIsPlaying(musicState.isPlaying);
     }
 
     return () => {
-      window.removeEventListener('musicStateChange', handleMusicStateChange);
+      window.removeEventListener("musicStateChange", handleMusicStateChange);
     };
   }, []);
 
@@ -65,7 +71,7 @@ const MusicPlayer = () => {
       playBackgroundMusic();
       return;
     }
-    
+
     if (isPlaying) {
       backgroundMusic.pause();
     } else {
@@ -82,28 +88,28 @@ const MusicPlayer = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       animate={{
-        backgroundColor: isPlaying 
-          ? 'rgba(255, 255, 255, 0.9)' 
-          : 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: isPlaying
+          ? "rgba(255, 255, 255, 0.9)"
+          : "rgba(255, 255, 255, 0.9)",
         boxShadow: isHovered
-          ? '0 0 20px rgba(236, 72, 153, 0.5)'
-          : '0 4px 6px rgba(0, 0, 0, 0.1)'
+          ? "0 0 20px rgba(236, 72, 153, 0.5)"
+          : "0 4px 6px rgba(0, 0, 0, 0.1)",
       }}
       transition={{
         duration: 0.3,
-        ease: [0.4, 0, 0.2, 1]
+        ease: [0.4, 0, 0.2, 1],
       }}
-      title={isPlaying ? 'Jeda Musik' : 'Putar Musik'}
-      aria-label={isPlaying ? 'Jeda Musik' : 'Putar Musik'}
+      title={isPlaying ? "Jeda Musik" : "Putar Musik"}
+      aria-label={isPlaying ? "Jeda Musik" : "Putar Musik"}
     >
       <AnimatePresence mode="wait">
         <motion.div
-          key={isPlaying ? 'pause' : 'play'}
+          key={isPlaying ? "pause" : "play"}
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           exit={{ scale: 0, rotate: 180 }}
           transition={{
-            duration : 0.25
+            duration: 0.25,
           }}
         >
           {isPlaying ? (
@@ -145,8 +151,6 @@ const MusicPlayer = () => {
           )}
         </motion.div>
       </AnimatePresence>
-      
-      
     </motion.button>
   );
 };

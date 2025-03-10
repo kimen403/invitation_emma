@@ -5,15 +5,23 @@ import CountdownTimer from "@/app/components/CountdownTimer";
 import MusicPlayer from "@/app/components/MusicPlayer";
 import { motion, useScroll } from "framer-motion";
 import { useTheme } from "next-themes";
+import axios from "axios";
 
+async function fetcher(formData) {
+  await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/invitations`, formData, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
 export default function Home({ params }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const { theme } = useTheme();
   const resolvedParams = use(params);
   const [formData, setFormData] = useState({
-    nama: "",
-    pesan: "",
-    attendance: "", // Add new field
+    name: "",
+    message: "",
+    content: "", // Add new field
   });
 
   const { guest } = resolvedParams;
@@ -22,7 +30,7 @@ export default function Home({ params }) {
     if (guest) {
       setFormData((prev) => ({
         ...prev,
-        nama: guest,
+        name: guest,
       }));
     }
   }, [guest]);
@@ -30,10 +38,11 @@ export default function Home({ params }) {
     setIsModalOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Terima kasih atas konfirmasi kehadiran Anda!");
-    setFormData({ nama: "", pesan: "", attendance: "" });
+    await fetcher(formData);
+    alert("Vielen Dank für Ihre Teilnahmebestätigung!");
+    setFormData({ name: "", message: "", content: "" });
   };
 
   const handleChange = (e) => {
@@ -51,15 +60,7 @@ export default function Home({ params }) {
     { id: 3, src: "/pichture/bg-vampirina.svg", alt: "Gallery Image 3" },
   ];
 
-  const { scrollY } = useScroll();
   const [opacity, setOpacity] = useState(1);
-
-  useEffect(() => {
-    return scrollY.onChange((latest) => {
-      const newOpacity = Math.max(1 - latest / 200, 0); // Fade out within 200px scroll
-      setOpacity(newOpacity);
-    });
-  }, [scrollY]);
 
   const bgGradient =
     theme === "dark"
@@ -265,16 +266,16 @@ export default function Home({ params }) {
                       nur zur Hauptparty oder auch zur Pyjama-Party bleibst.
                     </label>
                     <label
-                      htmlFor="nama"
+                      htmlFor="name"
                       className="block magical-subtitle text-gray-300 mb-2"
                     >
                       Dein Name
                     </label>
                     <input
                       type="text"
-                      id="nama"
-                      name="nama"
-                      value={formData.nama}
+                      id="name"
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
                       required
                       className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-600bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-400"
@@ -290,9 +291,9 @@ export default function Home({ params }) {
                         <input
                           type="radio"
                           id="mainParty"
-                          name="attendance"
-                          value="mainParty"
-                          checked={formData.attendance === "mainParty"}
+                          name="content"
+                          value="only main party"
+                          checked={formData.content === "only main party"}
                           onChange={handleChange}
                           className="mr-2"
                         />
@@ -307,9 +308,11 @@ export default function Home({ params }) {
                         <input
                           type="radio"
                           id="bothParties"
-                          name="attendance"
-                          value="bothParties"
-                          checked={formData.attendance === "bothParties"}
+                          name="content"
+                          value="main party + pyjama party"
+                          checked={
+                            formData.content === "main party + pyjama party"
+                          }
                           onChange={handleChange}
                           className="mr-2"
                         />
@@ -325,15 +328,15 @@ export default function Home({ params }) {
 
                   <div>
                     <label
-                      htmlFor="pesan"
+                      htmlFor="message"
                       className="block magical-subtitle text-gray-300 mb-2"
                     >
                       Spook Message
                     </label>
                     <textarea
-                      id="pesan"
-                      name="pesan"
-                      value={formData.pesan}
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleChange}
                       rows="4"
                       className="fancy-text w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
@@ -404,7 +407,6 @@ export default function Home({ params }) {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}
                   className="relative aspect-square overflow-hidden rounded-lg shadow-lg spooky-hover web-corner"
-                  backgroundImage={`url('${image.src}')`}
                 >
                   {/* Placeholder untuk gambar */}
                   <div className="absolute inset-0 bg-purple-900 flex items-center justify-center">
