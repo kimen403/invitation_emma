@@ -203,7 +203,7 @@ export default function Dashboard() {
                               scope="col"
                               className="px-6 py-3 text-left text-xs font-medium text-yellow-200 uppercase tracking-wider"
                             >
-                              Content
+                              Party
                             </th>
                             <th
                               scope="col"
